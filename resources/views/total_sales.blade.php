@@ -22,7 +22,7 @@
             <div class="sidebar">
                 <h2>FLASHSTORE</h2>
                 <ul>
-                    <li><a href="/"><i class="bi bi-house-door"></i> Home</a></li>
+                    <li><a href="/"><i class="bi bi-house-door"></i> My Store</a></li>
                     <li><a href="/total-users"><i class="bi bi-people"></i> Total Users</a></li>
                     <li><a href="/total-sales"><i class="bi bi-bar-chart"></i> Total Sales</a></li>
                     <a class="submit-btn admin-btn" href="halamantambah" role="button" data-aos="zoom-in"
@@ -48,6 +48,7 @@
                             <tr>
                                 <th>Product Name</th>
                                 <th>Quantity Sold</th>
+                                <th>Total Revenue</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,11 +56,25 @@
                                 <tr>
                                     <td>{{ optional($sale->product)->name ?? 'Unknown Product' }}</td>
                                     <td>{{ $sale->total_sold }}</td>
+                                    <td>${{ number_format($sale->total_revenue, 2) }}</td>
                                 </tr>
                             @endforeach
+                            <!-- Baris untuk menampilkan total -->
+                            <tr>
+                                <td><strong>Total</strong></td>
+                                <td><strong>{{ $totalSold }}</strong></td>
+                                <td><strong>${{ number_format($totalRevenue, 2) }}</strong></td>
+                            </tr>
                         </tbody>
                     </table>
+            
                     <canvas id="salesChart"></canvas>
+            
+                    <!-- Chart Section -->
+                    <div class="chart-container">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+            
                     <script>
                         var ctx = document.getElementById('salesChart').getContext('2d');
                         var salesChart = new Chart(ctx, {
@@ -75,8 +90,42 @@
                                         'rgba(75, 192, 192, 0.6)',
                                         'rgba(255, 159, 64, 0.6)',
                                         'rgba(153, 102, 255, 0.6)'
-                                    ]
+                                    ],
+                                    borderColor: [
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(255, 159, 64, 1)',
+                                        'rgba(153, 102, 255, 1)'
+                                    ],
+                                    borderWidth: 1
                                 }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        title: {
+                                            display: true,
+                                            text: 'Quantity Sold'
+                                        }
+                                    },
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Product Name'
+                                        }
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        display: true,
+                                        position: 'top'
+                                    },
+                                    tooltip: {
+                                        enabled: true
+                                    }
+                                }
                             }
                         });
                     </script>

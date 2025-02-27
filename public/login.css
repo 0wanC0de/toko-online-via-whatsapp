@@ -82,12 +82,12 @@ form{ width: 100%; }
         font-weight: 400;
     }
 
-    .input-box i{
+    .input-box i {
         position: absolute;
-        right: 20px;
+        right: 10px;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 20px;
+        cursor: pointer;
     }
 
 .forgot-link{ margin: -15px 0 15px; }
@@ -239,3 +239,4 @@ form{ width: 100%; }
 
     .toggle-panel h1{font-size: 30px;}
 }
+

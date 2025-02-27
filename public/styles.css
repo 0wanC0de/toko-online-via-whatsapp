@@ -84,7 +84,6 @@ body {
     z-index: 1000;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 
-
 }
 
 .sidebar-container {
@@ -458,6 +457,22 @@ header {
 
 .btn-wishlist:hover {
     color: #e60000;
+}
+
+.btn-wishlist.added {
+    background-color: #fff;
+    color: #e3342f;
+    border: 1px solid #e3342f;
+    cursor: not-allowed;
+}
+
+.btn-wishlist.added:hover {
+    background-color: #e3342f;
+    color: #fff;
+}
+
+.text-danger {
+    color: #e3342f !important;
 }
 
 

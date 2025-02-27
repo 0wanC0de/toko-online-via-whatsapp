@@ -24,7 +24,7 @@
             <ul>
                 <!-- Sidebar untuk Admin -->
                 @if (auth()->check() && auth()->user()->role === 'admin')
-                    <li><a href="/"><i class="bi bi-house-door"></i> Home</a></li>
+                    <li><a href="/"><i class="bi bi-house-door"></i> My Store</a></li>
                     <li><a href="/total-users"><i class="bi bi-people"></i> Total Users</a></li>
                     <li><a href="/total-sales"><i class="bi bi-bar-chart"></i> Total Sales</a></li>
                     <a class="submit-btn admin-btn" href="halamantambah" role="button" data-aos="zoom-in"
@@ -40,6 +40,13 @@
                     <li><a href="/order-history"><i class="bx bx-history"></i> Order History</a></li>
                 @endif
             </ul>
+            <!-- Tombol Logout -->
+            <div class="logout-btn">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </div>
         </div>
 
         <!-- Profile Icon on Top Right -->

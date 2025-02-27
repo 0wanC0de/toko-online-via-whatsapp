@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/flashStoreU.ico') }}" type="image/x-icon">
 </head>
 
 <body>
@@ -26,8 +26,8 @@
                     <i class="bx bxs-user"></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="password" placeholder="Password" required>
-                    <i class="bx bxs-lock-alt"></i>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <i class="bx bxs-show" id="togglePassword"></i> 
                 </div>
                 <!-- Pesan Error -->
                 @if (session('error'))
@@ -43,7 +43,7 @@
                 <div class="social-icons">
                     <a href="https://accounts.google.com/signin"><i class="bx bxl-google"></i></a>
                     <a href="https://www.facebook.com/login"><i class="bx bxl-facebook"></i></a>
-                </div>                
+                </div>
             </form>
         </div>
 
@@ -68,7 +68,7 @@
                 <div class="social-icons">
                     <a href="https://accounts.google.com/signin"><i class="bx bxl-google"></i></a>
                     <a href="https://www.facebook.com/login"><i class="bx bxl-facebook"></i></a>
-                </div>                
+                </div>
             </form>
         </div>
 
@@ -86,6 +86,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function(e) {
+            const password = document.getElementById('password');
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('bxs-show');
+            this.classList.toggle('bxs-hide');
+        });
+    </script>
 
 </body>
 

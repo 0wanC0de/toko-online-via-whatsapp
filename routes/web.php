@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\WishlistController;
@@ -19,8 +20,10 @@ Route::get('login', function () {
 
 
 Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
-
 Route::post('register', [RegisteredUserController::class, 'store']);
+
+// Route untuk menghapus pengguna
+Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
 
 
 require __DIR__.'/auth.php';
@@ -33,9 +36,9 @@ Route::middleware('auth')->group(function () {
         ->name('home');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
-    
     Route::get('/total-users', [DashboardController::class, 'totalUsers'])->name('total.users');
     Route::get('/total-sales', [DashboardController::class, 'totalSales'])->name('total.sales');
+    
     
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -46,6 +49,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::post('/wishlist/store', [WishlistController::class, 'store'])->name('wishlist.store');
+    Route::get('/wishlist/check/{productId}', [WishlistController::class, 'checkWishlist']);
     Route::post('/wishlist/add', [WishlistController::class, 'store'])->name('wishlist.add');
     Route::delete('/wishlist/remove/{id}', [WishlistController::class, 'destroy'])->name('wishlist.remove');
 });
@@ -56,8 +60,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/order-history', [OrderHistoryController::class, 'store'])->name('order_history.store');
     Route::post('/pesan-sekarang', [OrderHistoryController::class, 'store'])->name('pesan.sekarang');
     Route::delete('/orders/{id}/remove', [OrderHistoryController::class, 'destroy'])->name('orders.remove');
-
-
 });
 
 Route::get('/', [ShopController::class, 'index'])->name('home');

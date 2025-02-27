@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity');
-            $table->decimal('price', 10, 2); // Sesuai dengan yang ada di keranjang
+            $table->decimal('price', 10, 2);
             $table->timestamps();
 
             // Foreign key constraints

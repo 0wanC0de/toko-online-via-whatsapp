@@ -9,7 +9,6 @@
     <link href="https://unpkg.com/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('Profile.css') }}">
-    <link rel="icon" href="{{ asset('images/FlashStoreU.ico') }}" type="image/x-icon">
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/FlashStoreU.ico') }}" type="image/x-icon">
 </head>

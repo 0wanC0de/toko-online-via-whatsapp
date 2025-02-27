@@ -47,6 +47,7 @@ body {
 .sidebar ul {
     list-style: none;
     padding: 0;
+    flex: 1; /* Mengisi ruang yang tersedia */
 }
 
 .sidebar ul li {
@@ -67,6 +68,27 @@ body {
 .sidebar a:hover {
     background-color: rgba(255, 255, 255, 0.2);
     transform: translateX(10px);
+}
+
+/* Tombol Logout */
+.logout-btn {
+    margin-top: auto; /* Posisikan di bagian bawah */
+    padding: 20px 0; /* Beri jarak dari konten di atas */
+    text-align: center; /* Pusatkan tombol */
+}
+
+.logout-btn .btn-danger {
+    background-color: #dc3545; /* Warna merah untuk tombol logout */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn .btn-danger:hover {
+    background-color: #c82333; /* Warna merah lebih gelap saat hover */
 }
 
 .submit-btn i {

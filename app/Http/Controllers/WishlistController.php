@@ -27,6 +27,22 @@ class WishlistController extends Controller
     public function destroy($id)
     {
         Wishlist::where('id', $id)->delete();
+
+        // Jika request adalah AJAX, kembalikan respons JSON
+        if (\Illuminate\Support\Facades\Request::ajax()) {
+            return response()->json(['success' => 'Produk dihapus dari Wishlist!']);
+        }
+
+        // Jika bukan AJAX, kembalikan ke halaman sebelumnya dengan pesan sukses
         return back()->with('success', 'Produk dihapus dari Wishlist!');
+    }
+
+    public function checkWishlist($productId)
+    {
+        $isInWishlist = Wishlist::where('user_id', Auth::id())
+            ->where('product_id', $productId)
+            ->exists();
+
+        return response()->json(['isInWishlist' => $isInWishlist]);
     }
 }

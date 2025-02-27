@@ -209,16 +209,17 @@
                                 <button type="submit" class="btn-add-to-cart">Tambah Keranjang</button>
                             </form>
                             @if (Auth::check() && Auth::user()->role === 'user')
-                                <form action="{{ route('wishlist.store') }}" method="POST"
+                                <form action="{{ route('wishlist.store') }}" method="POST" class="form-wishlist"
                                     style="margin-top: 10px;">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product['id'] }}">
-                                    <button type="submit" class="btn-wishlist">
-                                        <i class='bx bx-heart'></i> Tambah ke Wishlist
+                                    <button type="submit" class="btn-wishlist"
+                                        id="wishlist-button-{{ $product['id'] }}">
+                                        <i class='bx bx-heart' id="wishlist-icon-{{ $product['id'] }}"></i>
+                                        <span id="wishlist-text-{{ $product['id'] }}">Tambah ke Wishlist</span>
                                     </button>
                                 </form>
                             @endif
-
                         </div>
                         <div id="editModal" class="modal">
                             <div class="modal-content">
@@ -380,6 +381,41 @@
                 });
             });
         </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Dapatkan semua form wishlist
+                const wishlistForms = document.querySelectorAll('.form-wishlist');
 
+                wishlistForms.forEach(form => {
+                    const productId = form.querySelector('input[name="product_id"]').value;
+                    const button = form.querySelector('.btn-wishlist');
+                    const icon = form.querySelector('.bx-heart');
+                    const text = form.querySelector('#wishlist-text-' + productId);
+
+                    // Periksa status wishlist
+                    fetch(`/wishlist/check/${productId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.isInWishlist) {
+                                button.innerHTML =
+                                    "<i class='bx bxs-heart text-danger'></i> Ditambahkan ke Wishlist";
+                            }
+                        });
+
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault(); 
+
+                        
+                        button.innerHTML =
+                            "<i class='bx bxs-heart text-danger'></i> Ditambahkan ke Wishlist";
+
+                        
+                        setTimeout(() => {
+                            this.submit();
+                        }, 500);
+                    });
+                });
+            });
+        </script>
     </body>
 </body>
