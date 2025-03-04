@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('halamantambah.css') }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/FlashStoreU.ico') }}" type="image/x-icon">
@@ -17,7 +18,6 @@
                 <h1 class="logo-text">
                     <i class="bi bi-bag-fill"></i> FlashStore
                 </h1>
-                <link rel="stylesheet" href="{{ asset('styles.css') }}">
                 <!-- AOS JS -->
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
                 <script>

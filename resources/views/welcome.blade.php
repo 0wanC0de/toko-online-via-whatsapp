@@ -11,10 +11,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{{ asset('styles.css') }}">
-
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/FlashStoreU.ico') }}" type="image/x-icon">
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            window.addEventListener("scroll", function() {
+                var navbar = document.querySelector(".navbar");
+                if (window.scrollY > 200) {
+                    navbar.style.background = "rgba(83, 63, 219, 1)";
+                } else {
+                    navbar.style.background = "rgba(83, 63, 219, 0)";
+                }
+            });
+        });
+    </script>
 
 </head>
 
@@ -30,7 +41,7 @@
                     <!-- Logo -->
                     <div class="sidebar-logo">
                         <h1 class="logo-text">
-                            <i class="bi bi-bag-fill"></i> FlashStore
+                            <i class="bi bi-cart"></i> FlashStore
                         </h1>
                     </div>
                     <!-- AOS JS -->
@@ -71,12 +82,13 @@
             </nav>
         @else
             <!-- Navbar untuk User -->
-            <nav class="navbar" data-aos="fade-down">
-                <div class="container navbar-container">
+            <nav class="navbar fixed-top" data-aos="fade-down" style="transition: all 0.3s ease;">
+                <div class="container navbar-container ">
                     <!-- Logo -->
                     <div class="navbar-logo">
-                        <h1 class="logo-text">
-                            <i class="bi bi-bag-fill"></i> FlashStore
+                        <h1 class="logo-text mb-0"> <a class="text-white text-decoration-none" href="#home">
+                                <i class="bi bi-cart-fill"></i> FlashStore
+                            </a>
                         </h1>
                     </div>
                     <!-- AOS JS -->
@@ -96,15 +108,14 @@
                     </script>
                     <!-- Navigation Menu -->
                     <ul class="navbar-menu">
-                        <li><a href="#home"><i class="bi bi-house-fill"></i>Beranda</a></li>
-                        <li><a href="#products"><i class="bi bi-bag-fill"></i> Produk</a></li>
+                        <li><a class="my-auto h-100 navbar-hover-effect" href="#home">Home</a></li>
+                        <li><a class="my-auto h-100 navbar-hover-effect" href="#products">Product</a></li>
                         <li>
-                            <a href="https://wa.me/123456789?text=Halo%2C%20saya%20ingin%20bertanya%20mengenai%20produk%20Anda"
-                                target="_blank">
-                                <i class="bi bi-telephone-fill"></i> Hubungi
-                            </a>
+                            <a class="my-auto h-100 navbar-hover-effect"
+                                href="https://wa.me/123456789?text=Halo%2C%20saya%20ingin%20bertanya%20mengenai%20produk%20Anda"
+                                target="_blank">Contact</a>
                         </li>
-                        <li><a href="/keranjang" class="cart-button"><i class="bi bi-cart-fill"></i> Keranjang</a></li>
+                        <li><a class="my-auto h-100 navbar-hover-effect cart-button" href="/keranjang">Cart</a></li>
 
                         @auth
                             <!-- Jika pengguna sudah login -->
@@ -117,8 +128,9 @@
                             </li>
                         @else
                             <!-- Jika pengguna belum login -->
-                            <li><a href="{{ route('login') }}" class="btn btn-success">Login</a></li>
-                            <li><a href="{{ route('register') }}" class="btn btn-primary">Register</a></li>
+                            <li><a href="{{ route('login') }}" class="button-pill btn btn-primary">Login</a></li>
+                            <li><a href="{{ route('register') }}" class="button-pill btn btn-outline-primary">Register</a>
+                            </li>
                         @endauth
                     </ul>
                 </div>
@@ -131,10 +143,10 @@
         <header id="home" class="hero-section">
             <div class="container hero-content">
                 <!-- Bagian Kiri: Teks -->
-                <div class="hero-text">
+                <div class="hero-text text-white">
                     <h1 data-aos="fade-down">Welcome to <span class="brand">FlashStore</span></h1>
-                    <p data-aos="fade-up" data-aos-delay="200">Checkout seamlessly via <i
-                            class="bi bi-whatsapp"></i>WhatsApp</p>
+                    <p data-aos="fade-up" data-aos-delay="200">Checkout seamlessly via <i class="bi bi-whatsapp"></i>
+                        WhatsApp</p>
 
                     @if (Auth::check() && Auth::user()->role === 'admin')
                         <a class="submit-btn admin-btn" href="halamantambah" role="button" data-aos="zoom-in"
@@ -155,12 +167,12 @@
         <!-- About Us Section -->
         <section id="about-us" class="about-us">
             <div class="container">
-                <h2 data-aos="fade-up">About Us</h2>
+                <h2 data-aos="fade-up" class="text-black">About Us</h2>
                 <div class="about-content">
                     <div class="about-text" data-aos="fade-right">
                         <p>Welcome to <span class="brand">FlashStore</span>, your go-to destination for quality
-                            products.</p>
-                        <p>We provide the best products at affordable prices with an easy checkout process via WhatsApp.
+                            products. We provide the best products at affordable prices with an easy checkout process
+                            via WhatsApp.
                         </p>
                     </div>
                     <div class="about-image" data-aos="fade-left">
@@ -220,6 +232,7 @@
                                     </button>
                                 </form>
                             @endif
+
                         </div>
                         <div id="editModal" class="modal">
                             <div class="modal-content">
@@ -248,18 +261,22 @@
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-left">
-                        <h3><img class="footer-logo"> FlashStore</h3>
-                        <p>Tempat Belanja </p>
+                        <h1><img class="footer-logo " style="font-style: italic;">FlashStore</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum dolores veniam, error hic
+                            praesentium unde veritatis consectetur voluptate porro, et laborum neque inventore iste eius
+                            quibusdam, quidem quo ex temporibus! </p>
+
                     </div>
                     <div class="footer-links">
                         <div class="footer-column">
                             <h4>Platform</h4>
                             <ul>
-                                <li><a href="#home">Beranda</a></li>
-                                <li><a href="#products">Produk</a></li>
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#products">Product</a></li>
                                 <li><a
-                                        href="https://wa.me/123456789?text=Halo%2C%20saya%20ingin%20bertanya%20mengenai%20produk%20Anda">Hubungi</a>
+                                        href="https://wa.me/123456789?text=Halo%2C%20saya%20ingin%20bertanya%20mengenai%20produk%20Anda">Contact</a>
                                 </li>
+                                <li><a href="#">Cart</a></li>
                             </ul>
                         </div>
                         <div class="footer-column">
@@ -272,20 +289,31 @@
                             </ul>
                         </div>
                         <div class="footer-column">
-                            <h4>Contacts</h4>
-                            <p>📞 123 4567 8090</p>
-                            <p>📧 flashstore@gmail.com</p>
+                            <h4>Subscribe</h4>
+                            <form class="d-flex justify-content-center align-items-center mb-2">
+                                <div class="w-100">
+                                    <input type="email" class="form-control bg-transparent text-white py-2"
+                                        placeholder="Your email here!" id="subscribe=button">
+                                </div>
+                                <button type="submit"
+                                    class="btn btn-outline-primary button-pill-end py-2">Subscribe</button>
+                            </form>
+                            <p class="mb-2"><i class="bi bi-telephone"></i> 123 4567 8090</p>
+                            <p class="mb-2"><i class="bi bi-envelope"></i> flashstore@gmail.com</p>
+                            <p class="mb-2"><i class="bi bi-geo-alt-fill"></i> My Location</p>
                             <div class="social-icons">
-                                <a href="https://www.facebook.com/flashsoftindonesia/"><img src="images/facebook.png"
-                                        alt="Facebook"></a>
-                                <a href="https://www.instagram.com/flashsoftindonesia/"><img
-                                        src="images/instagram.png" alt="Instagram"></a>
+                                <a href="https://www.facebook.com/flashsoftindonesia/"><i
+                                        class="text-white bi bi-facebook"></i></a>
+                                <a href="https://www.instagram.com/flashsoftindonesia/"><i
+                                        class="text-white bi bi-instagram"></i></a>
+                                <a href="#"><i class="text-white bi bi-whatsapp"></i></a>
+                                <a href="#"><i class="text-white bi bi-discord"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr>
-                <p class="footer-bottom">@ Flashstore 2024. All rights reserved.</p>
+
+                <p class="footer-bottom mt-5 mb-2">@ Flashstore 2024. All rights reserved.</p>
             </div>
         </footer>
 
@@ -300,6 +328,8 @@
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+        <!-- jquery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <script>
             function editProduct(id, stock, price) {
@@ -383,7 +413,6 @@
         </script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Dapatkan semua form wishlist
                 const wishlistForms = document.querySelectorAll('.form-wishlist');
 
                 wishlistForms.forEach(form => {
@@ -417,5 +446,6 @@
                 });
             });
         </script>
+
     </body>
 </body>

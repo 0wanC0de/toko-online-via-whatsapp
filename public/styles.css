@@ -8,15 +8,22 @@ body {
 
 /* Navbar Styles */
 .navbar {
-    background-color: #533fdb;
+    background-color: transparent;
     padding: 20px;
-    position: sticky;
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    
-    
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+    border-radius: 0 0 12px 12px;
+    -webkit-transition: all 0.3s ease !important;
+    -moz-transition: all 0.3s ease !important;
+    -ms-transition: all 0.3s ease !important;
+    -o-transition: all 0.3s ease !important;
+}
+
+.transparent-navbar {
+    background: transparent !important;
 }
 
 .navbar-container {
@@ -58,20 +65,30 @@ body {
     margin-left: 30px;
 }
 
-.navbar-menu li a {
+.navbar-menu li a.navbar-hover-effect {
     color: #E2F3F4;
-    text-decoration: none;
-    font-weight: bold;
     font-size: 20px;
-    display: flex;
-    align-items: center;
+    text-decoration: none;
     transition: all 0.3s ease;
+    position: relative;
 }
 
-.navbar-menu li a:hover {
-    text-decoration: underline;
-    font-size: 22px;
+.navbar-menu li a.navbar-hover-effect::after {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    content: "";
+    background-color: #ffffff;
+    width: 0%;
+    height: 3px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
 }
+  .navbar-menu li a.navbar-hover-effect:hover::after {
+    width: 100%;
+  }
 
 /* Sidebar Styles */
 .sidebar {
@@ -83,6 +100,7 @@ body {
     left: 0;
     z-index: 1000;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
 
 }
 
@@ -119,8 +137,6 @@ body {
     font-size: 20px;
 }
 
-
-
 /* Container */
 .container {
     width: 80%;
@@ -130,19 +146,18 @@ body {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(to right, #E2F3F4, #6a59e0);
+    background: url(images/bg.jpg) no-repeat ;
+    background-position: center;
+    background-size: cover;
     color: rgb(0, 0, 0);
     padding: 150px 0;
     position: relative;
-    overflow: hidden;
-   
-    
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
 }
 
 /* Gunakan Flexbox */
 .hero-content {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
@@ -156,8 +171,8 @@ body {
 }
 
 .hero-text h1 {
-    font-size: 3rem;
-    font-weight: bold;
+    font-size: 5rem;
+    font-weight: 900;
 }
 
 .hero-text .brand {
@@ -261,8 +276,8 @@ body {
 
 /* About Us Section */
 .about-us {
-    background: #533fdb;
-    padding: 100px 0;
+    background: #fff;
+    padding: 50px 0;
     text-align: center;
 }
 
@@ -285,13 +300,13 @@ body {
     font-size: 1.2rem;
     margin-bottom: 20px;
     line-height: 1.6;
-    color: #E2F3F4;
+    color: #000000;
     
 }
 
 .about-text .brand {    
     font-style: italic;
-    color: #E2F3F4;
+    color: #000000;
 }
 
 .about-image {
@@ -404,13 +419,13 @@ header {
 
 
 .product-item img {
-    max-width: 80%; /* Sesuaikan agar tidak terlalu besar */
+    max-width: 80%; 
     height: auto;
     border-radius: 5px;
 }
 
 .product-item p {
-    min-height: 40px; /* Sesuaikan tinggi minimum agar sejajar */
+    min-height: 40px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -418,7 +433,7 @@ header {
 }
 
 .product-details {
-    min-height: 80px; /* Tambahkan tinggi agar cukup untuk tiga elemen */
+    min-height: 80px; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -428,7 +443,7 @@ header {
 .product-details .description,
 .product-details .price,
 .product-details .stock {
-    min-height: 30px; /* Sesuaikan tinggi agar sejajar */
+    min-height: 30px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -437,13 +452,13 @@ header {
 
 .product-details .price {
     font-weight: bold;
-    color: #28a745; /* Warna hijau untuk menonjolkan harga */
+    color: #28a745; 
     margin-top: 5px;
 }
 
 .product-details .stock {
     font-size: 14px;
-    color: #ff5733; /* Warna merah jika ingin menonjolkan stok */
+    color: #ff5733; 
 }
 
 .btn-wishlist {
@@ -457,22 +472,6 @@ header {
 
 .btn-wishlist:hover {
     color: #e60000;
-}
-
-.btn-wishlist.added {
-    background-color: #fff;
-    color: #e3342f;
-    border: 1px solid #e3342f;
-    cursor: not-allowed;
-}
-
-.btn-wishlist.added:hover {
-    background-color: #e3342f;
-    color: #fff;
-}
-
-.text-danger {
-    color: #e3342f !important;
 }
 
 
@@ -499,10 +498,11 @@ header {
 
 
 footer {
-    background-color: #533fdb;
+    background-color: #090718;
     color: #E2F3F4;
     padding: 20px 0;
     padding-left: 250px;
+    font-weight: bold;
     
 }
 
@@ -520,14 +520,15 @@ footer {
 
 .footer-left {
     flex: 1;
+    padding-right: 30px;
+    border-inline-end: 1px #E2F3F4 solid ;
 }
 
-
-
-.footer-left h3 {
+.footer-left h1 {
     display: flex;
     align-items: center;
-    font-size: 18px;
+    font-size: 5rem;
+    font-weight: 900;
 }
 
 .footer-left p {
@@ -546,7 +547,7 @@ footer {
 }
 
 .footer-column h4 {
-    font-size: 16px;
+    font-weight: bold;
     margin-bottom: 10px;
 }
 
@@ -800,6 +801,14 @@ hr {
 .user .products,
 .user footer {
     padding-left: 0;
+}
+
+.button-pill{
+    border-radius: 20px !important;
+}
+
+.button-pill-end{
+    border-radius: 0 20px 20px 0 !important;
 }
 
 

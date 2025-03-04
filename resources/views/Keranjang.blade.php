@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Keranjang Belanja</title>
-    <link rel="stylesheet" href="{{ asset('styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('keranjang.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Favicon -->
@@ -121,22 +121,27 @@
         </div>
     </section>
 
+    <!-- Footer Section -->
     <footer id="contact" data-aos="fade-up">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-left">
-                    <h3><img class="footer-logo"> FlashStore</h3>
-                    <p>Tempat Belanja </p>
+                    <h1><img class="footer-logo " style="font-style: italic;">FlashStore</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum dolores veniam, error hic
+                        praesentium unde veritatis consectetur voluptate porro, et laborum neque inventore iste eius
+                        quibusdam, quidem quo ex temporibus! </p>
+
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
                         <h4>Platform</h4>
                         <ul>
-                            <li><a href="#home">Beranda</a></li>
-                            <li><a href="#products">Produk</a></li>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#products">Product</a></li>
                             <li><a
-                                    href="https://wa.me/123456789?text=Halo%2C%20saya%20ingin%20bertanya%20mengenai%20produk%20Anda">Hubungi</a>
+                                    href="https://wa.me/123456789?text=Halo%2C%20saya%20ingin%20bertanya%20mengenai%20produk%20Anda">Contact</a>
                             </li>
+                            <li><a href="#">Cart</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
@@ -149,20 +154,31 @@
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4>Contacts</h4>
-                        <p>📞 853 6383 4829</p>
-                        <p>📧 flashstore@gmail.com</p>
+                        <h4>Subscribe</h4>
+                        <form class="d-flex justify-content-center align-items-center mb-2">
+                            <div class="w-100">
+                                <input type="email" class="form-control bg-transparent text-white py-2"
+                                    placeholder="Your email here!" id="subscribe=button">
+                            </div>
+                            <button type="submit"
+                                class="btn btn-outline-primary button-pill-end py-2">Subscribe</button>
+                        </form>
+                        <p class="mb-2"><i class="bi bi-telephone"></i> 123 4567 8090</p>
+                        <p class="mb-2"><i class="bi bi-envelope"></i> flashstore@gmail.com</p>
+                        <p class="mb-2"><i class="bi bi-geo-alt-fill"></i> My Location</p>
                         <div class="social-icons">
-                            <a href="https://www.facebook.com/flashsoftindonesia/"><img src="images/facebook.png"
-                                    alt="Facebook"></a>
-                            <a href="https://www.instagram.com/flashsoftindonesia/"><img src="images/instagram.png"
-                                    alt="Instagram"></a>
+                            <a href="https://www.facebook.com/flashsoftindonesia/"><i
+                                    class="text-white bi bi-facebook"></i></a>
+                            <a href="https://www.instagram.com/flashsoftindonesia/"><i
+                                    class="text-white bi bi-instagram"></i></a>
+                            <a href="#"><i class="text-white bi bi-whatsapp"></i></a>
+                            <a href="#"><i class="text-white bi bi-discord"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <hr>
-            <p class="footer-bottom">@ Flashstore 2024. All rights reserved.</p>
+
+            <p class="footer-bottom mt-5 mb-2">@ Flashstore 2024. All rights reserved.</p>
         </div>
     </footer>
 
