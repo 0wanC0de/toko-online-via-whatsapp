@@ -5,15 +5,21 @@ body {
     padding: 0;
 }
 
-/* Sidebar Styles */
+/* Sidebar */
 .sidebar {
-    background-color: #533fdb;
     width: 250px;
-    height: 100vh;
+    background: #533fdb;
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    transition: all 0.3s;
+    overflow-y: auto;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -30,6 +36,8 @@ body {
     padding: 0;
     margin: 0;
 }
+
+
 
 .sidebar-menu li {
     margin-bottom: 15px;

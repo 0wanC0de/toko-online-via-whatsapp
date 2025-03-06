@@ -791,8 +791,7 @@ hr {
 /* Jika admin, tambahkan padding kiri */
 .admin .hero-section,
 .admin .products,
-.admin .about-us,
-.admin footer {
+.admin .about-us {
     padding-left: 250px;
 }
 

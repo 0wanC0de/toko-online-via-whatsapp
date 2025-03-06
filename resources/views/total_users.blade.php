@@ -32,6 +32,13 @@
                         <i class='bx bx-plus'></i> Tambah Produk
                     </a>
                 </ul>
+                <!-- Tombol Logout -->
+                <div class="logout-btn">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+                </div>
             </div>
 
             <!-- Profile Icon on Top Right -->
@@ -62,7 +69,8 @@
                                     <td>{{ $user->role }}</td>
                                     <td>
                                         <!-- Tombol Delete -->
-                                        <form action="{{ route('user.delete', $user->id) }}" method="POST" class="delete-form">
+                                        <form action="{{ route('user.delete', $user->id) }}" method="POST"
+                                            class="delete-form">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">
@@ -82,11 +90,11 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const deleteForms = document.querySelectorAll('.delete-form');
-    
+
             deleteForms.forEach(form => {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
-    
+
                     Swal.fire({
                         title: 'Apakah Anda yakin?',
                         text: "Anda tidak dapat mengembalikan data ini!",

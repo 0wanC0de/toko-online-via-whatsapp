@@ -63,6 +63,21 @@ html, body {
     transition: all 0.3s;
 }
 
+.submit-btn {
+    background-color: #25d366;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 .submit-btn i {
     margin-right: 5px;  
     font-size: 20px;    
@@ -171,4 +186,25 @@ html, body {
 
 .btn-danger i {
     margin-right: 5px;
+}
+
+/* Tombol Logout */
+.logout-btn {
+    margin-top: auto;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.logout-btn .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn .btn-danger:hover {
+    background-color: #c82333;
 }

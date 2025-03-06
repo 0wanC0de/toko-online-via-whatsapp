@@ -30,6 +30,13 @@
                         <i class='bx bx-plus'></i> Tambah Produk
                     </a>
                 </ul>
+                <!-- Tombol Logout -->
+                <div class="logout-btn">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+                </div>
             </div>
 
             <!-- Profile Icon on Top Right -->
@@ -67,14 +74,14 @@
                             </tr>
                         </tbody>
                     </table>
-            
+
                     <canvas id="salesChart"></canvas>
-            
+
                     <!-- Chart Section -->
                     <div class="chart-container">
                         <canvas id="salesChart"></canvas>
                     </div>
-            
+
                     <script>
                         var ctx = document.getElementById('salesChart').getContext('2d');
                         var salesChart = new Chart(ctx, {

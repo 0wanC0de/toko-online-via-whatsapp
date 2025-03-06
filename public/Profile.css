@@ -120,3 +120,24 @@ body {
         transform: translateY(0);
     }
 }
+
+/* Tombol Logout */
+.logout-btn {
+    margin-top: auto;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.logout-btn .btn-danger {
+    background-color: #dc3545;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn .btn-danger:hover {
+    background-color: #c82333;
+}

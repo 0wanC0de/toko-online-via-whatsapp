@@ -34,6 +34,13 @@
                     @endif
                 </ul>
             </div>
+            <!-- Tombol Logout -->
+            <div class="logout-btn">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </div>
         </div>
 
         <div class="main-content">

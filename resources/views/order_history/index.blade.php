@@ -24,6 +24,13 @@
                 <li><a href="/wishlist"><i class="bx bx-heart"></i> Wishlist</a></li>
                 <li><a href="/order-history"><i class="bx bx-history"></i> Order History</a></li>
             </ul>
+            <!-- Tombol Logout -->
+            <div class="logout-btn">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </div>
         </div>
 
         <!-- Profile Icon on Top Right -->
