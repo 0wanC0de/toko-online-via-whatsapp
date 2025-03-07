@@ -65,6 +65,15 @@ body {
     margin-left: 30px;
 }
 
+.navbar-menu li a {
+    text-decoration: none; /* Menghilangkan underline */
+    outline: none; /* Menghilangkan outline saat fokus */
+}
+
+.navbar-menu li a:focus {
+    outline: none; /* Pastikan tidak ada outline saat fokus */
+}
+
 .navbar-menu li a.navbar-hover-effect {
     color: #E2F3F4;
     font-size: 20px;
@@ -86,9 +95,11 @@ body {
     border-radius: 12px;
     transition: all 0.3s ease;
 }
-  .navbar-menu li a.navbar-hover-effect:hover::after {
+
+.navbar-menu li a.navbar-hover-effect:hover::after {
     width: 100%;
-  }
+}
+
 
 /* Sidebar Styles */
 .sidebar {
@@ -339,6 +350,148 @@ header {
     background-color: #E2F3F4;
     padding: 20px 0;
     text-align: center;
+}
+
+/* Base Styles */
+.sparkle-button {
+    --active: 0;
+    --bg: radial-gradient(
+        40% 50% at center 100%,
+        hsl(270 calc(var(--active) * 97%) 72% / var(--active)),
+        transparent
+    ),
+    radial-gradient(
+        80% 100% at center 120%,
+        hsl(260 calc(var(--active) * 97%) 70% / var(--active)),
+        transparent
+    ),
+    hsl(260 calc(var(--active) * 97%) calc((var(--active) * 44%) + 12%));
+    background: var(--bg);
+    font-size: 1rem; 
+    font-weight: 500;
+    text-decoration: none; 
+    outline: none; 
+    border: 0;
+    cursor: pointer;
+    padding: 0.75em 1.5em; 
+    width: auto; 
+    max-width: 200px; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    white-space: nowrap;
+    border-radius: 100px;
+    position: relative;
+    box-shadow: 0 0 calc(var(--active) * 3em) calc(var(--active) * 1em) hsl(260 97% 61% / 0.75),
+        0 0em 0 0 hsl(260 calc(var(--active) * 97%) calc((var(--active) * 50%) + 30%)) inset,
+        0 -0.05em 0 0 hsl(260 calc(var(--active) * 97%) calc(var(--active) * 60%)) inset;
+    transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+    transform: scale(calc(1 + (var(--active) * 0.1)));
+}
+
+.sparkle-button:active {
+    transform: scale(1);
+}
+
+.sparkle-button:is(:hover, :focus-visible) {
+    --active: 1;
+}
+
+.spark {
+    position: absolute;
+    inset: 0;
+    border-radius: 100px;
+    overflow: hidden;
+    mask: linear-gradient(white, transparent 50%);
+    animation: flip 2s infinite steps(2, end);
+}
+
+.spark:before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    aspect-ratio: 1;
+    top: 0%;
+    left: 50%;
+    translate: -50% -15%;
+    rotate: 0;
+    transform: rotate(-90deg);
+    opacity: calc((var(--active)) + 0.4);
+    background: conic-gradient(
+        from 0deg,
+        transparent 0 340deg,
+        white 360deg
+    );
+    transition: opacity 0.3s;
+    animation: rotate 1s linear infinite both;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(90deg);
+    }
+}
+
+.backdrop {
+    position: absolute;
+    inset: 0;
+    background: var(--bg);
+    border-radius: 100px;
+    transition: background 0.3s;
+}
+
+.text {
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.01ch;
+    background: linear-gradient(90deg, hsl(0 0% calc((var(--active) * 100%) + 65%)), hsl(0 0% calc((var(--active) * 100%) + 26%)));
+    -webkit-background-clip: text;
+    color: transparent;
+    transition: background 0.3s;
+}
+
+.sp {
+    position: relative;
+}
+
+.bodydrop {
+    display: none;
+}
+
+/* Particle Effect */
+.particle-pen {
+    position: absolute;
+    width: 200%;
+    aspect-ratio: 1;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    -webkit-mask: radial-gradient(white, transparent 65%);
+    z-index: -1;
+    opacity: var(--active, 0);
+    transition: opacity 0.3s;
+}
+
+.particle {
+    position: absolute;
+    width: 0.25rem;
+    height: 0.25rem;
+    background: white;
+    border-radius: 50%;
+    top: calc(var(--y) * 1%);
+    left: calc(var(--x) * 1%);
+    opacity: var(--alpha, 1);
+    animation: float-out calc(var(--duration, 1) * 1s) calc(var(--delay) * -1s) infinite linear;
+    transform-origin: var(--origin-x, 1000%) var(--origin-y, 1000%);
+    z-index: -1;
+    animation-play-state: var(--play-state, paused);
+}
+
+@keyframes float-out {
+    to {
+        rotate: 360deg;
+    }
 }
 
 /* Products Section */
@@ -809,7 +962,4 @@ hr {
 .button-pill-end{
     border-radius: 0 20px 20px 0 !important;
 }
-
-
-
 

@@ -60,7 +60,7 @@
         <div class="main-content">
             <div class="welcome-message">
                 @if (auth()->check() && auth()->user()->role === 'admin')
-                    <h1>You're logged in! <span>Welcome to FlashStore!</span></h1>
+                    <h1>You're logged in! <span>Welcome to Admin Dashboard</span></h1>
                     <p>Explore the dashboard to manage users, view sales, and update your profile.</p>
                 @endif
                 @if (auth()->check() && auth()->user()->role === 'user')

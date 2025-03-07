@@ -119,7 +119,7 @@
 
                         @auth
                             <!-- Jika pengguna sudah login -->
-                            <li><a href="{{ route('dashboard') }}"><i class="bi bi-person-circle"></i>Dashboard</a></li>
+                            <li><a class="my-auto h-100 navbar-hover-effect" href="{{ route('dashboard') }}"></i> Dashboard</a></li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -145,17 +145,25 @@
                 <!-- Bagian Kiri: Teks -->
                 <div class="hero-text text-white">
                     <h1 data-aos="fade-down">Welcome to <span class="brand">FlashStore</span></h1>
-                    <p data-aos="fade-up" data-aos-delay="200">Checkout seamlessly via <i class="bi bi-whatsapp"></i>
-                        WhatsApp</p>
-
+                    <p data-aos="fade-up" data-aos-delay="200">Checkout seamlessly via <i class="bi bi-whatsapp"></i> WhatsApp</p>
+        
+                    @if (!Auth::check())
+                        <div class="sp">
+                            <a href="{{ route('login') }}" class="sparkle-button">
+                                <span class="spark"></span>
+                                
+                                <span class="text">Get Started</span>
+                            </a>
+                        </div>
+                    @endif
+        
                     @if (Auth::check() && Auth::user()->role === 'admin')
-                        <a class="submit-btn admin-btn" href="halamantambah" role="button" data-aos="zoom-in"
-                            data-aos-delay="400">
+                        <a class="submit-btn admin-btn" href="halamantambah" role="button" data-aos="zoom-in" data-aos-delay="400">
                             Tambah Produk
                         </a>
                     @endif
                 </div>
-
+        
                 <!-- Bagian Kanan: Gambar -->
                 <div class="hero-image" data-aos="fade-left">
                     <img src="{{ asset('images/FlashStoreU.jpg') }}" alt="FlashStore Illustration">
