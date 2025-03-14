@@ -35,7 +35,6 @@
         <!-- Navbar -->
         @if (auth()->check() && auth()->user()->role === 'admin')
             <!-- Sidebar untuk Admin -->
-
             <nav class="sidebar" data-aos="fade-down">
                 <div class="sidebar-container">
                     <!-- Logo -->
@@ -72,10 +71,12 @@
                         <li><a href="/keranjang" class="cart-button"><i class="bi bi-cart-fill"></i> Keranjang</a></li>
                         <li><a href="{{ route('dashboard') }}"><i class="bi bi-person-circle"></i>Dashboard</a></li>
                         <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="btn btn-danger">Logout</button>
-                            </form>
+                            <div class="logout-btn">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Logout</button>
+                                </form>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -108,18 +109,20 @@
                     </script>
                     <!-- Navigation Menu -->
                     <ul class="navbar-menu">
-                        <li><a class="my-auto h-100 navbar-hover-effect" href="#home">Home</a></li>
-                        <li><a class="my-auto h-100 navbar-hover-effect" href="#products">Product</a></li>
+                        <li><a class="my-auto h-100 navbar-hover-effect" href="#home">Beranda</a></li>
+                        <li><a class="my-auto h-100 navbar-hover-effect" href="#products">Produk</a></li>
                         <li>
                             <a class="my-auto h-100 navbar-hover-effect"
                                 href="https://wa.me/123456789?text=Halo%2C%20saya%20ingin%20bertanya%20mengenai%20produk%20Anda"
                                 target="_blank">Contact</a>
                         </li>
-                        <li><a class="my-auto h-100 navbar-hover-effect cart-button" href="/keranjang">Cart</a></li>
+                        <li><a class="my-auto h-100 navbar-hover-effect cart-button" href="/keranjang">Keranjang</a>
+                        </li>
 
                         @auth
                             <!-- Jika pengguna sudah login -->
-                            <li><a class="my-auto h-100 navbar-hover-effect" href="{{ route('dashboard') }}"></i> Dashboard</a></li>
+                            <li><a class="my-auto h-100 navbar-hover-effect" href="{{ route('dashboard') }}"></i>
+                                    Dashboard</a></li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -128,9 +131,10 @@
                             </li>
                         @else
                             <!-- Jika pengguna belum login -->
-                            <li><a href="{{ route('login') }}" class="button-pill btn btn-primary">Login</a></li>
-                            <li><a href="{{ route('register') }}" class="button-pill btn btn-outline-primary">Register</a>
-                            </li>
+                            <li><a href="{{ route('login') }}"
+                                    class="button-pill btn btn-primary navbar-hover-effect">Login</a></li>
+                            <li><a href="{{ route('register') }}"
+                                    class="button-pill btn btn-outline-primary navbar-hover-effect">Register</a></li>
                         @endauth
                     </ul>
                 </div>
@@ -145,25 +149,28 @@
                 <!-- Bagian Kiri: Teks -->
                 <div class="hero-text text-white">
                     <h1 data-aos="fade-down">Welcome to <span class="brand">FlashStore</span></h1>
-                    <p data-aos="fade-up" data-aos-delay="200">Checkout seamlessly via <i class="bi bi-whatsapp"></i> WhatsApp</p>
-        
+                    <p data-aos="fade-up" data-aos-delay="200">
+                        Proses pembayaran mudah melalui <i class="bi bi-whatsapp"></i>
+                        WhatsApp</p>
+
                     @if (!Auth::check())
                         <div class="sp">
                             <a href="{{ route('login') }}" class="sparkle-button">
                                 <span class="spark"></span>
-                                
+
                                 <span class="text">Get Started</span>
                             </a>
                         </div>
                     @endif
-        
+
                     @if (Auth::check() && Auth::user()->role === 'admin')
-                        <a class="submit-btn admin-btn" href="halamantambah" role="button" data-aos="zoom-in" data-aos-delay="400">
+                        <a class="submit-btn admin-btn" href="halamantambah" role="button" data-aos="zoom-in"
+                            data-aos-delay="400">
                             Tambah Produk
                         </a>
                     @endif
                 </div>
-        
+
                 <!-- Bagian Kanan: Gambar -->
                 <div class="hero-image" data-aos="fade-left">
                     <img src="{{ asset('images/FlashStoreU.jpg') }}" alt="FlashStore Illustration">
@@ -175,12 +182,12 @@
         <!-- About Us Section -->
         <section id="about-us" class="about-us">
             <div class="container">
-                <h2 data-aos="fade-up" class="text-black">About Us</h2>
+                <h2 data-aos="fade-up" class="text-black">Tentang kami</h2>
                 <div class="about-content">
                     <div class="about-text" data-aos="fade-right">
-                        <p>Welcome to <span class="brand">FlashStore</span>, your go-to destination for quality
-                            products. We provide the best products at affordable prices with an easy checkout process
-                            via WhatsApp.
+                        <p>Selamat datang di<span class="brand">FlashStore</span>,tempat Anda mencari produk
+                            berkualitas. Kami menyediakan produk terbaik dengan harga terjangkau dan proses pembayaran
+                            mudah melalui WhatsApp.
                         </p>
                     </div>
                     <div class="about-image" data-aos="fade-left">
@@ -210,7 +217,7 @@
                                 <p class="description">{{ $product['description'] }}</p>
                                 <p class="stock">Stock: <span
                                         id="stock-{{ $product['id'] }}">{{ $product['stock'] }}</span></p>
-                                <p class="price">Price: $<span
+                                <p class="price">Price: Rp<span
                                         id="price-{{ $product['id'] }}">{{ $product['price'] }}</span></p>
                             </div>
 
@@ -221,7 +228,14 @@
                                 </button>
                             @endif
 
-                            <form action="{{ route('add-to-keranjang') }}" method="POST">
+                            {{-- <form action="{{ route('add-to-keranjang') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $product['id'] }}">
+                                <input type="hidden" name="name" value="{{ $product['name'] }}">
+                                <input type="hidden" name="price" value="{{ $product['price'] }}">
+                                <button type="submit" class="btn-add-to-cart">Tambah Keranjang</button>
+                            </form> --}}
+                            <form id="add-to-keranjang-form" onsubmit="addToKeranjang(event)">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $product['id'] }}">
                                 <input type="hidden" name="name" value="{{ $product['name'] }}">
@@ -429,7 +443,7 @@
                     const icon = form.querySelector('.bx-heart');
                     const text = form.querySelector('#wishlist-text-' + productId);
 
-                    // Periksa status wishlist
+
                     fetch(`/wishlist/check/${productId}`)
                         .then(response => response.json())
                         .then(data => {
@@ -440,13 +454,13 @@
                         });
 
                     form.addEventListener('submit', function(e) {
-                        e.preventDefault(); 
+                        e.preventDefault();
 
-                        
+
                         button.innerHTML =
                             "<i class='bx bxs-heart text-danger'></i> Ditambahkan ke Wishlist";
 
-                        
+
                         setTimeout(() => {
                             this.submit();
                         }, 500);
@@ -455,5 +469,41 @@
             });
         </script>
 
+        <script>
+            function addToKeranjang(event) {
+                event.preventDefault(); // Mencegah form submit
+
+                // Ambil data dari form
+                const form = event.target;
+                const product = {
+                    id: form.querySelector('input[name="id"]').value,
+                    name: form.querySelector('input[name="name"]').value,
+                    price: parseFloat(form.querySelector('input[name="price"]').value),
+                    quantity: 1, // Default quantity
+                };
+
+                // Ambil keranjang dari local storage (jika sudah ada)
+                let keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
+
+                // Cek apakah produk sudah ada di keranjang
+                const existingProduct = keranjang.find(item => item.id === product.id);
+                if (existingProduct) {
+                    // Jika sudah ada, tambahkan quantity-nya
+                    existingProduct.quantity += 1;
+                } else {
+                    // Jika belum ada, tambahkan produk baru ke keranjang
+                    keranjang.push(product);
+                }
+
+                // Simpan keranjang ke local storage
+                localStorage.setItem('keranjang', JSON.stringify(keranjang));
+
+                // Tampilkan pesan sukses
+                alert('Produk berhasil ditambahkan ke keranjang!');
+
+                // Perbarui tampilan keranjang
+                displayKeranjang();
+            }
+        </script>
     </body>
 </body>
